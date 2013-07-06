@@ -1,0 +1,19 @@
+window.PC = angular.module 'Profcyn', ['ngResource']
+
+PC.config ['$routeProvider', ($routeProvider) ->
+  $routeProvider
+    .when '/',
+      controller: 'ThumbnailsController'
+      templateUrl: '<%= asset_path("start.html") %>'
+]
+
+PC.config ['$locationProvider', ($locationProvider) ->
+  $locationProvider.html5Mode true
+]
+
+PC.config ['$httpProvider', ($httpProvider) ->
+  $httpProvider.defaults.headers.common['Content-Type'] = 'application/json'
+  $httpProvider.defaults.headers.common['Accept'] = 'application/json' # text/javascript
+  $httpProvider.defaults.headers.common['X-CSRF-Token'] = $("meta[name='csrf-token']").attr("content")
+  $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+]

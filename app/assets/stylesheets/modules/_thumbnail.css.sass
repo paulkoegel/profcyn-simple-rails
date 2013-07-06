@@ -1,0 +1,22 @@
+$default-height: 250px
+$default-width: round($default-height * 6016 / 4016)
+
+%pthumbnail
+  height: $default-height
+  width: $default-width
+  background-position: center center
+  background-size: cover
+  background-repeat: no-repeat
+  background-color: #eee
+  margin: 0 5px 2px 0
+  .m-thumbnail-container &
+    display: inline-block
+
+.m-thumbnail
+  @extend %pthumbnail
+  &.as-square
+    width: $default-height
+  &.as-circle
+    width: $default-height
+    +border-bottom-right-radius(20px)
+    +border-top-left-radius(20px)
