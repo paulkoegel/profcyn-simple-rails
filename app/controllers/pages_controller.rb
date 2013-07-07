@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def start
-    @photos = Gallery.first.photos
+    @photos = Gallery.first.try(:photos)
   end
 
 end

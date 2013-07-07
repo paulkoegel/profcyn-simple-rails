@@ -6,12 +6,17 @@ if Rails.env.development?
   end
 end
 
+base_path = Rails.root.join('public', 'galleries')
+gallery_paths = Dir["#{base_path}/*"]
 
-gallery = Gallery.create title: 'Hong Kong 2013', date: Date.parse('2013-04-01')
+gallery_paths.each do |gallery_path|
+  directory = gallery_path.split('/').last
+  date = Date.parse(/\d+/.match(gallery_path).to_s) rescue nil
+  gallery = Gallery.create title: directory.humanize.titleize, date: date, directory: directory
 
-image_paths = []
-187.times do |i|
-  gallery.photos << Photo.new(dropbox_path: "http://dl.dropbox.com/u/3374145/profcyn/2013-04_hong_kong/#{'%03d' % (i+1)}.jpg")
+  photo_paths = Dir["#{gallery_path}/*"]
+  photo_paths.each do |photo_path|
+    file_path = "#{directory}/#{photo_path.split('/').last}"
+    gallery.photos.create file_path: file_path
+  end
 end
-
-gallery.save

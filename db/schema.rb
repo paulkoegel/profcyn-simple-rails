@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20130706184430) do
   create_table "galleries", force: true do |t|
     t.string   "title"
     t.string   "location"
+    t.string   "directory"
     t.integer  "photos_count"
     t.datetime "date"
     t.datetime "created_at"
@@ -34,9 +35,9 @@ ActiveRecord::Schema.define(version: 20130706184430) do
 
   create_table "photos", force: true do |t|
     t.string   "title"
+    t.string   "file_path"
     t.datetime "date"
     t.string   "location"
-    t.text     "dropbox_path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

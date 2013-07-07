@@ -3,7 +3,7 @@ window.PC = angular.module 'Profcyn', ['ngResource']
 PC.config ['$routeProvider', ($routeProvider) ->
   $routeProvider
     .when '/',
-      controller: 'ThumbnailsController'
+      controller: 'StartController'
       templateUrl: '<%= asset_path("start.html") %>'
 ]
 
