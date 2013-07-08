@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def start
-    @photos = Gallery.first.try(:photos)
+    @photos = Gallery.find_by(directory: 'urban_exploration_2012').photos.order('RANDOM()').limit(20)
   end
 
 end

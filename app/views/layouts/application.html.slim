@@ -7,7 +7,7 @@ html data-ng-app= 'Profcyn'
     = csrf_meta_tags
   body
     javascript:
-      window.photos = #{Photo.limit(20).to_json(methods: :url).html_safe}
+      window.photos = #{@photos.to_json(methods: [:url, :url_small]).html_safe}
 
     .l-content data-ng-view = ''
       = yield
